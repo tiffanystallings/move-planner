@@ -37,6 +37,21 @@ h1 {
 	border: 0;
 	display: flex;
 	background-color: rgb(100,100,100);
+	align-items: center;
+	justify-content: center;
+}
+
+#location, button {
+	height: 40px;
+	padding: 5px;
+}
+
+#location {
+	width: 50%;
+}
+
+button {
+	width: 100px;
 }
 
 #ny-times {
