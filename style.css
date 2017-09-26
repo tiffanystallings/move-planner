@@ -55,6 +55,14 @@ button {
 	width: 100px;
 }
 
+a:link, a:visited {
+	color: #4c030c;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 #ny-times {
 	min-height: 400px;
 	width: 75%;
