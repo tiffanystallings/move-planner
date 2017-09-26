@@ -60,7 +60,7 @@ button {
 	width: 75%;
 	margin: 0;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 }
 
 #articles {
@@ -77,11 +77,20 @@ button {
 	width: 25%;
 	margin: 0;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: top;
+}
+
+#wiki-head {
+	max-height: 50px;
+}
+
+#wiki-links {
+	padding: 10px;
 }
 
 h2, h3 {
-	min-width: 100%
+	min-width: 100%;
 }
 
 h2 {

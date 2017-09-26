@@ -7,8 +7,10 @@ var nytFl = "headline,web_url,snippet"
 
 
 function getWikiLinks(location) {
+	var $links = $('#wiki-links');
+	$links.text("");
 	$.ajax({
-		url: 'http//en.wikipedia.org/w/api.php',
+		url: 'http://en.wikipedia.org/w/api.php',
 		data: {
 			action: 'query',
 			list: 'search',
@@ -16,11 +18,23 @@ function getWikiLinks(location) {
 			format: 'json'
 		},
 		dataType: 'jsonp',
-		jsonp: true,
-		success: function(data) {
-			console.log(data);
+		success: function(response) {
+			var results = response.query.search;
+			console.log(response);
+			for (i=0; i<results.length; i++) {
+				var link = "http://en.wikipedia.org/?curid=" + results[i].pageid;
+				var title = results[i].title;
+				$links.append("<h3><a href='" + link + "'' target='_blank'>" + 
+					title + "</a></h3>");
+			}
+
+			if (results.length == 0) {
+				$links.append("No relevent links for this location.");
+			}
 		}
-	});
+	}).fail(function() {
+		$links.append("Couldn't find Wikipedia links.");
+	})
 
 }
 
@@ -32,7 +46,7 @@ function getArticles(location) {
 	$.getJSON(url, function(data) {
 		var articleList = data.response.docs
 		for (i=0; i<articleList.length; i++) {
-			$articles.append("<h3><a href=" + articleList[i]['web_url'] + ">" +
+			$articles.append("<h3><a href='" + articleList[i]['web_url'] + "' target='_blank'>" +
 			  articleList[i]['headline']['main'] + "</a></h3>");
 			$articles.append("<p>" + articleList[i]['snippet'] + "</p>");
 		}
